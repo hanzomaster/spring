@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RestController
@@ -31,13 +33,13 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public UserDto updateUser(@PathVariable Long id, @RequestBody @Valid UserUpdateDto updateDto) {
+    public UserDto updateUser(@PathVariable UUID id, @RequestBody @Valid UserUpdateDto updateDto) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         return userMapper.toDto(userRepository.save(userMapper.partialUpdate(updateDto, user)));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
+    public void deleteUser(@PathVariable UUID id) {
         userRepository.deleteById(id);
     }
 }

@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RestController
@@ -31,13 +33,13 @@ public class TopicController {
     }
 
     @PatchMapping("/{id}")
-    public TopicDto updateTopic(@PathVariable Long id, @RequestBody @Valid TopicCreateDto updateDto) {
+    public TopicDto updateTopic(@PathVariable UUID id, @RequestBody @Valid TopicCreateDto updateDto) {
         Topic topic = topicRepository.findById(id).orElseThrow(() -> new RuntimeException("Topic not found"));
         return topicMapper.toDto(topicRepository.save(topicMapper.partialUpdate(updateDto, topic)));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTopic(@PathVariable Long id) {
+    public void deleteTopic(@PathVariable UUID id) {
         topicRepository.deleteById(id);
     }
 }

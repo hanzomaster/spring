@@ -12,7 +12,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses
-        = {TopicMapper.class})
+        = TopicMapper.class)
 public interface PostMapper {
     Post toEntity(PostDto postDto);
 
