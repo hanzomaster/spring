@@ -3,6 +3,7 @@ package com.example.spring.entities;
 
 import com.example.spring.entities.base.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.lang.NonNull;
@@ -18,7 +19,7 @@ import java.util.Set;
 @Entity
 public class Post extends BaseEntity {
     @Column
-    @NonNull
+    @NotNull
     String title;
     @Column(columnDefinition = "text")
     String content;
