@@ -18,15 +18,11 @@ public interface PostMapper {
 
     PostDto toDto(Post post);
 
-    @Mapping(source = "userId", target = "user.id")
+    @Mapping(source = "author", target = "user.id")
     Post toEntity(PostCreateDto postCreateDto);
 
-    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.id", target = "author")
     PostCreateDto toCreateDto(Post post);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(source = "userId", target = "user.id")
-    Post partialUpdate(PostCreateDto postCreateDto, @MappingTarget Post post);
 
     @Mapping(source = "userId", target = "user.id")
     Post toEntity(PostUpdateDto postUpdateDto);

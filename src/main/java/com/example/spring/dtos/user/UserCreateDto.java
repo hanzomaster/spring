@@ -19,12 +19,17 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserCreateDto implements Serializable {
-    @NotBlank
+    @NotBlank(message = "Username is required")
     private String username;
+
+    @NotBlank(message = "Email is required")
     @Email(message = "Email is not valid")
     private String email;
+
+    @NotBlank
     @Length(min = 8)
     private String password;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @Past
     private Date dob;

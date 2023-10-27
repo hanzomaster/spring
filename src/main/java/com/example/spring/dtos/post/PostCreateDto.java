@@ -2,6 +2,7 @@ package com.example.spring.dtos.post;
 
 import com.example.spring.dtos.topic.TopicCreateDto;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class PostCreateDto implements Serializable {
     private String title;
     private String content;
     private Boolean published;
-    private UUID userId;
+    @NotNull
+    private UUID author;
     private Set<TopicCreateDto> topics = new LinkedHashSet<>();
 }
