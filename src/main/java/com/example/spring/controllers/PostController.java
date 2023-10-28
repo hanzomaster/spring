@@ -7,21 +7,20 @@ import com.example.spring.dtos.post.PostUpdateDto;
 import com.example.spring.entities.Post;
 import com.example.spring.models.PaginateParam;
 import com.example.spring.repositories.PostRepository;
+import com.example.spring.repositories.UserRepository;
 import jakarta.validation.Valid;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RestController
 @RequestMapping("/posts")
 public class PostController {
-    PostMapper postMapper;
-    PostRepository postRepository;
+    private final PostMapper postMapper;
+    private final PostRepository postRepository;
+    private final UserRepository userRepository;
 
     @GetMapping
     public Iterable<PostDto> getAllPosts(PaginateParam param) {

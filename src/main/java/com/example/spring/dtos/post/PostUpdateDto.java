@@ -18,6 +18,5 @@ public class PostUpdateDto implements Serializable {
     private String title;
     private String content;
     private Boolean published;
-    private UUID userId;
     private Set<UUID> topicIds;
 }

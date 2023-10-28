@@ -6,15 +6,9 @@ import com.example.spring.dtos.user.UserUpdateDto;
 import com.example.spring.entities.User;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses
-        = PostMapper.class)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
     User toEntity(UserDto userDto);
-
-    @AfterMapping
-    default void linkPosts(@MappingTarget User user) {
-        user.getPosts().forEach(post -> post.setUser(user));
-    }
 
     UserDto toDto(User user);
 
