@@ -5,9 +5,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.geo.Point;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,6 +20,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserCreateDto implements Serializable {
     @NotBlank(message = "Username is required")
     private String username;
@@ -33,4 +36,6 @@ public class UserCreateDto implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @Past
     private Date dob;
+
+    private Point location;
 }

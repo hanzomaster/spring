@@ -11,6 +11,7 @@ import jakarta.validation.constraints.Past;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.geo.Point;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -31,16 +32,14 @@ public class User extends BaseEntity implements UserDetails {
 
     @Email(message = "Email is not valid")
     @Column(unique = true)
-    @NotNull
-    String email;
+    @NotNull String email;
 
     @Column
-    @Length(min = 8)
-    @NotNull
-    String password;
+    @Length(min = 8) @NotNull String password;
 
-    @Past
-    Instant dob;
+    @Past Instant dob;
+
+    Point location;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     @ToString.Exclude
