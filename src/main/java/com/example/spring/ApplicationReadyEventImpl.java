@@ -17,8 +17,7 @@ import java.text.SimpleDateFormat;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ApplicationReadyEventImpl implements ApplicationListener<ApplicationReadyEvent> {
-
-    private final UserController userController;
+    UserController userController;
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -38,5 +37,4 @@ public class ApplicationReadyEventImpl implements ApplicationListener<Applicatio
                 .location(new Point(10, 20))
                 .build());
     }
-
 }
